@@ -2,7 +2,7 @@
 #include "GpuVram.h"
 
 CPdhGPUVram::CPdhGPUVram()
-    : CPdhQuery(_T("\\GPU Adapter Memory(*)\\Dedicated Usage"))
+    : CPdhQuery(_T("\\GPU Adapter Memory(*)\\Total Committed"))
 {
 }
 
@@ -17,7 +17,7 @@ bool CPdhGPUVram::GetUsedVram(unsigned long long& bytes)
     std::vector<CounterValueItem> valueItems;
     if (!QueryValues(valueItems) || valueItems.empty()) return false;
 
-    int max = 0;
+    unsigned long long max = 0;
     for (const auto& item : valueItems)
     {
         max = item.value > max ? item.value : max;
