@@ -235,12 +235,8 @@ void CTaskBarDlg::DrawDisplayItem(IDrawCommon& drawer, DisplayItem type, CRect r
     }
 
     // 绘制状态条
-    if (type == TDI_CPU || type == TDI_MEMORY || type == TDI_VIRT_MEMORY || type == TDI_GPU_USAGE || type == TDI_CPU_TEMP
-        || type == TDI_GPU_TEMP || type == TDI_HDD_TEMP || type == TDI_MAIN_BOARD_TEMP || type == TDI_HDD_USAGE
-=======
-    if (type == TDI_CPU || type == TDI_MEMORY || type == TDI_VIRT_MEMORY || type == TDI_GPU_USAGE || type == TDI_GPU_MEMORY 
+    if (type == TDI_CPU || type == TDI_MEMORY || type == TDI_VIRT_MEMORY || type == TDI_GPU_USAGE || type == TDI_GPU_MEMORY
         || type == TDI_CPU_TEMP || type == TDI_GPU_TEMP || type == TDI_HDD_TEMP || type == TDI_MAIN_BOARD_TEMP || type == TDI_HDD_USAGE
->>>>>>> Stashed changes
         || type == TDI_UP || type == TDI_DOWN || type == TDI_TOTAL_SPEED/* ||type==TDI_CPU_FREQ*/)
     {
         int figure_value{};
