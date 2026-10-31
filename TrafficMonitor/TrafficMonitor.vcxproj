@@ -798,6 +798,7 @@
     <ClInclude Include="Dxgi1Support2.h" />
     <ClInclude Include="FileDialogEx.h" />
     <ClInclude Include="FilePathHelper.h" />
+    <ClInclude Include="PdhHardwareQuery\GpuVram.h" />
     <ClInclude Include="HighResolutionTimer.h" />
     <ClInclude Include="HistoryTrafficCalendarDlg.h" />
     <ClInclude Include="HistoryTrafficFile.h" />
@@ -901,6 +902,7 @@
     <ClCompile Include="Dxgi1Support2.cpp" />
     <ClCompile Include="FileDialogEx.cpp" />
     <ClCompile Include="FilePathHelper.cpp" />
+    <ClCompile Include="PdhHardwareQuery\GpuVram.cpp" />
     <ClCompile Include="HistoryTrafficCalendarDlg.cpp" />
     <ClCompile Include="HistoryTrafficFile.cpp" />
     <ClCompile Include="HistoryTrafficListDlg.cpp" />

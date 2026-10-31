@@ -10,6 +10,7 @@ enum DisplayItem
     TDI_MEMORY,
     TDI_VIRT_MEMORY,
     TDI_GPU_USAGE,
+    TDI_GPU_MEMORY,
     TDI_CPU_TEMP,
     TDI_GPU_TEMP,
     TDI_HDD_TEMP,
