@@ -1423,6 +1423,10 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
             gpu_usage_acquired = true;
         else
             theApp.m_gpu_usage = -1;
+
+        unsigned long long bytes;
+        if (m_gpu_vram_usage.GetUsedVram(bytes))
+            theApp.m_gpu_used_vram = static_cast<int>(bytes / 1024);
     }
 
     //获取硬盘利用率

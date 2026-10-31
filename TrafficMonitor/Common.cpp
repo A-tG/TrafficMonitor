@@ -336,7 +336,7 @@ CString CCommon::DataSizeToString(unsigned long long size, bool with_space)
     else if (size < 1024 * 1024)            //1MB以下以KB为单位，保留1位小数
         str.Format(_T("%.1f KB"), size / 1024.0);
     else if (size < 1024 * 1024 * 1024)     //1GB以下以MB为单位，保留2位小数
-        str.Format(_T("%.2f MB"), size / 1024.0 / 1024.0);
+        str.Format(_T("%.1f MB"), size / 1024.0 / 1024.0);
     else if (size < 1024ll * 1024 * 1024 * 1024)
         str.Format(_T("%.2f GB"), size / 1024.0 / 1024.0 / 1024.0);
     else

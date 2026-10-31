@@ -735,6 +735,9 @@ string CSkinFile::GetDisplayItemXmlNodeName(DisplayItem display_item)
     case TDI_GPU_USAGE:
         return "gpu";
         break;
+    case TDI_GPU_MEMORY:
+        return "gpu_vram";
+        break;
     case TDI_CPU_TEMP:
         return "cpu_temperature";
         break;
