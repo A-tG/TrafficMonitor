@@ -334,6 +334,7 @@ void CSkinFile::LoadFromIni(const wstring& file_path)
     getDisplayTextFromIni(TDI_DOWN, L"down_string");
     getDisplayTextFromIni(TDI_CPU, L"cpu_string");
     getDisplayTextFromIni(TDI_MEMORY, L"memory_string");
+    getDisplayTextFromIni(TDI_VIRT_MEMORY, L"virt_memory_string");
     //获取预览区大小
     m_preview_info.width = theApp.DPI(ini.GetInt(_T("layout"), _T("preview_width"), 238));
     m_preview_info.height = theApp.DPI(ini.GetInt(_T("layout"), _T("preview_height"), 105));

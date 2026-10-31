@@ -18,6 +18,7 @@
 #include "WineTaskbarDlg.h"
 #include "TaskbarHelper.h"
 #include "SkinManager.h"
+#include "psapi.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -669,6 +670,7 @@ void CTrafficMonitorDlg::UpdateNotifyIconTip()
     strTip += CCommon::StringFormat(_T("\r\n<%1%>: <%2%>/s"), { CCommon::LoadText(IDS_DOWNLOAD), in_speed });
     strTip += CCommon::StringFormat(_T("\r\nCPU: <%1%> %"), { theApp.m_cpu_usage });
     strTip += CCommon::StringFormat(_T("\r\n<%1%>: <%2%> %"), { CCommon::LoadText(IDS_MEMORY), theApp.m_memory_usage });
+    strTip += CCommon::StringFormat(_T("\r\n<%1%>: <%2%> %"), { CCommon::LoadText(IDS_VIRT_MEMORY), theApp.m_virt_memory_usage });
     if (IsTemperatureNeeded())
     {
         if (theApp.m_general_data.IsHardwareEnable(HI_GPU) && theApp.m_gpu_usage >= 0)
@@ -1461,6 +1463,13 @@ void CTrafficMonitorDlg::DoMonitorAcquisition()
     theApp.m_memory_usage = statex.dwMemoryLoad;
     theApp.m_used_memory = static_cast<int>((statex.ullTotalPhys - statex.ullAvailPhys) / 1024);
     theApp.m_total_memory = static_cast<int>(statex.ullTotalPhys / 1024);
+    // Commit charge
+    PERFORMANCE_INFORMATION pi;
+    GetPerformanceInfo(&pi, sizeof(pi));
+    theApp.m_virt_memory_usage = static_cast<int>(100 * pi.CommitTotal / pi.CommitLimit);
+    theApp.m_used_virt_memory = static_cast<int>((pi.CommitTotal * pi.PageSize) / 1024);
+    theApp.m_total_virt_memory = static_cast<int>((pi.CommitLimit * pi.PageSize) / 1024);
+
 
 #ifndef WITHOUT_TEMPERATURE
     //获取温度

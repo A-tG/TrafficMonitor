@@ -235,7 +235,7 @@ void CTaskBarDlg::DrawDisplayItem(IDrawCommon& drawer, DisplayItem type, CRect r
     }
 
     // 绘制状态条
-    if (type == TDI_CPU || type == TDI_MEMORY || type == TDI_GPU_USAGE || type == TDI_CPU_TEMP
+    if (type == TDI_CPU || type == TDI_MEMORY || type == TDI_VIRT_MEMORY || type == TDI_GPU_USAGE || type == TDI_CPU_TEMP
         || type == TDI_GPU_TEMP || type == TDI_HDD_TEMP || type == TDI_MAIN_BOARD_TEMP || type == TDI_HDD_USAGE
         || type == TDI_UP || type == TDI_DOWN || type == TDI_TOTAL_SPEED/* ||type==TDI_CPU_FREQ*/)
     {
@@ -247,6 +247,9 @@ void CTaskBarDlg::DrawDisplayItem(IDrawCommon& drawer, DisplayItem type, CRect r
             break;
         case TDI_MEMORY:
             figure_value = theApp.m_memory_usage;
+            break;
+        case TDI_VIRT_MEMORY:
+            figure_value = theApp.m_virt_memory_usage;
             break;
         case TDI_GPU_USAGE:
             figure_value = theApp.m_gpu_usage;

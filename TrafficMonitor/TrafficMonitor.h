@@ -50,7 +50,11 @@ public:
     int m_cpu_usage{ -1 };      //CPU利用率
     int m_memory_usage{ -1 };   //内存利用率
     int m_used_memory{};    //可用物理内存（单位为KB）
-    int m_total_memory{};   //物理内存总量（单位为KB）
+    int m_total_memory{};   //物理内存总量（单位为KB
+    // Commit charge
+    int m_virt_memory_usage{ -1 };
+    int m_used_virt_memory{};
+    int m_total_virt_memory{};
     float m_cpu_temperature{ -1 };  //CPU温度
     float m_cpu_freq{ -1 };  //CPU 频率
     float m_gpu_temperature{ -1 };  //显卡温度

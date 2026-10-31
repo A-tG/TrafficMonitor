@@ -8,6 +8,7 @@ enum DisplayItem
     TDI_DOWN,
     TDI_CPU,
     TDI_MEMORY,
+    TDI_VIRT_MEMORY,
     TDI_GPU_USAGE,
     TDI_CPU_TEMP,
     TDI_GPU_TEMP,
@@ -22,7 +23,7 @@ enum DisplayItem
 //所有内置显示项目的集合
 const std::set<DisplayItem> AllDisplayItems
 {
-    TDI_UP, TDI_DOWN, TDI_CPU, TDI_MEMORY, TDI_GPU_USAGE
+    TDI_UP, TDI_DOWN, TDI_CPU, TDI_MEMORY, TDI_VIRT_MEMORY, TDI_GPU_USAGE
 #ifndef WITHOUT_TEMPERATURE
     , TDI_CPU_TEMP, TDI_GPU_TEMP, TDI_HDD_TEMP, TDI_MAIN_BOARD_TEMP
 #endif

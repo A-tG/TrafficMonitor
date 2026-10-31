@@ -71,6 +71,7 @@ CString CommonDisplayItem::GetItemName() const
         case TDI_TOTAL_SPEED: return CCommon::LoadText(IDS_TOTAL_NET_SPEED);
         case TDI_CPU: return CCommon::LoadText(IDS_CPU_USAGE);
         case TDI_MEMORY: return CCommon::LoadText(IDS_MEMORY_USAGE);
+        case TDI_VIRT_MEMORY: return CCommon::LoadText(IDS_VIRT_MEMORY_USAGE);
         case TDI_GPU_USAGE: return CCommon::LoadText(IDS_GPU_USAGE);
         case TDI_CPU_TEMP: return CCommon::LoadText(IDS_CPU_TEMPERATURE);
         case TDI_GPU_TEMP: return CCommon::LoadText(IDS_GPU_TEMPERATURE);
@@ -129,6 +130,9 @@ std::wstring CommonDisplayItem::DefaultString(bool is_main_window) const
         case TDI_MEMORY:
             default_text = CCommon::LoadText(IDS_MEMORY_DISP, _T(": "));
             break;
+        case TDI_VIRT_MEMORY:
+            default_text = CCommon::LoadText(IDS_VIRT_MEMORY_DISP, _T(": "));
+            break;
         case TDI_GPU_USAGE:
             default_text = CCommon::LoadText(IDS_GPU_DISP, _T(": "));
             break;
@@ -167,6 +171,7 @@ const wchar_t* CommonDisplayItem::GetItemIniKeyName() const
         case TDI_DOWN: return L"down_string";
         case TDI_CPU: return L"cpu_string";
         case TDI_MEMORY: return L"memory_string";
+        case TDI_VIRT_MEMORY: return L"virt_memory_string";
         case TDI_GPU_USAGE: return L"gpu_string";
         case TDI_CPU_TEMP: return L"cpu_temp_string";
         case TDI_GPU_TEMP: return L"gpu_temp_string";
@@ -235,6 +240,18 @@ CString CommonDisplayItem::GetItemValueText(bool is_main_window) const
                 str_value = CCommon::DataSizeToString((static_cast<unsigned long long>(theApp.m_total_memory) - static_cast<unsigned long long>(theApp.m_used_memory)) * 1024, cfg_data->separate_value_unit_with_space);
             else
                 str_value = CCommon::UsageToString(theApp.m_memory_usage, *cfg_data);
+            break;
+        // Commit charge
+        case TDI_VIRT_MEMORY:
+            if (cfg_data->memory_display == MemoryDisplay::MEMORY_USED)
+                str_value = CCommon::DataSizeToString(static_cast<unsigned long long>(theApp.m_used_virt_memory) * 1024, 
+                    cfg_data->separate_value_unit_with_space);
+            else if (cfg_data->memory_display == MemoryDisplay::MEMORY_AVAILABLE)
+                str_value = CCommon::DataSizeToString(
+                    (static_cast<unsigned long long>(theApp.m_total_virt_memory) - static_cast<unsigned long long>(theApp.m_used_virt_memory)) * 1024,
+                    cfg_data->separate_value_unit_with_space);
+            else
+                str_value = CCommon::UsageToString(theApp.m_virt_memory_usage, *cfg_data);
             break;
         //显卡利用率
         case TDI_GPU_USAGE:
@@ -305,6 +322,9 @@ CString CommonDisplayItem::GetItemValueSampleText(bool is_main_window) const
         case TDI_MEMORY:
             sample_str = _T("51 %");
             break;
+        case TDI_VIRT_MEMORY:
+            sample_str = _T("51 %");
+            break;
         case TDI_CPU_TEMP: case TDI_GPU_TEMP: case TDI_HDD_TEMP: case TDI_MAIN_BOARD_TEMP:
             sample_str = _T("40 °C");
             break;
@@ -353,6 +373,7 @@ CString CommonDisplayItem::GetItemValueSampleText(bool is_main_window) const
         //占用率百分比
         case TDI_CPU:
         case TDI_MEMORY:
+        case TDI_VIRT_MEMORY:
         case TDI_GPU_USAGE:
         case TDI_HDD_USAGE:
         {
